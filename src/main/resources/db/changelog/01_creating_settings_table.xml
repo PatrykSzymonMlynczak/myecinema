@@ -24,4 +24,324 @@
             </column>
         </createTable>
     </changeSet>
+
+    <changeSet author="RadoslawGorniak" id="creating_user_details_table">
+        <createTable tableName="user_details"
+                     remarks="Table keeps information about user_details">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="first_name" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_name" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="city" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="adress" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="postcode" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="date_of_brith" type="date">
+                <constraints nullable="false"/>
+            </column>
+            <column name="version" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="creation_date" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_update_date" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+            <column name="user_details_id" type="bigint" autoIncrement="true">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="RadoslawGorniak" id="creating_user_account_table">
+        <createTable tableName="user_account"
+                     remarks="Table keeps information about user_account">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="username" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="email" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="password" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="version" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="creation_date" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_update_date" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+            <column name="user_details_id" type="bigint" autoIncrement="true">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addForeignKeyConstraint baseColumnNames="user_details_id"
+                                 baseTableName="user_account"
+                                 constraintName="fk_user_details_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="user_details"/>
+    </changeSet>
+
+    <changeSet author="RadoslawGorniak" id="creating_movie_table">
+        <createTable tableName="movie"
+                     remarks="Table keeps information about movie">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="title" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="type" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="production" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="release_year" type="date">
+                <constraints nullable="false"/>
+            </column>
+            <column name="director" type="date">
+                <constraints nullable="false"/>
+            </column>
+            <column name="duration" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="for_how_many_years" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="version" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="creation_date" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_update_date" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="RadoslawGorniak" id="creating_cinema_table">
+        <createTable tableName="cinema"
+                     remarks="Table keeps information about cinema">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="cinema_type" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="city" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="postcode" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="adress" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="version" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="creation_date" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_update_date" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="RadoslawGorniak" id="creating_hall_table">
+        <createTable tableName="hall"
+                     remarks="Table keeps information about hall">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="hall_number" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="version" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="creation_date" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_update_date" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="RadoslawGorniak" id="creating_seance_table">
+        <createTable tableName="seance"
+                     remarks="Table keeps information about seance">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="language_version" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="day" type="date">
+                <constraints nullable="false"/>
+            </column>
+            <column name="showing_time" type="time">
+                <constraints nullable="false"/>
+            </column>
+            <column name="version" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="creation_date" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_update_date" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+            <column name="hall_id" type="bigint" autoIncrement="true">
+                <constraints nullable="false"/>
+            </column>
+            <column name="movie_id" type="bigint" autoIncrement="true">
+                <constraints nullable="false"/>
+            </column>
+            <column name="cinema_id" type="bigint" autoIncrement="true">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addForeignKeyConstraint baseColumnNames="hall_id"
+                                 baseTableName="seance"
+                                 constraintName="fk_hall_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="hall"/>
+        <addForeignKeyConstraint baseColumnNames="movie_id"
+                                 baseTableName="seance"
+                                 constraintName="fk_movie_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="movie"/>
+        <addForeignKeyConstraint baseColumnNames="cinema_id"
+                                 baseTableName="seance"
+                                 constraintName="fk_cinema_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="cinema"/>
+    </changeSet>
+
+    <changeSet author="RadoslawGorniak" id="creating_seat_table">
+    <createTable tableName="seat"
+                 remarks="Table keeps information about seat">
+        <column name="id" type="bigint" autoIncrement="true">
+            <constraints primaryKey="true"/>
+        </column>
+        <column name="place" type="int">
+            <constraints nullable="false"/>
+        </column>
+        <column name="row" type="int">
+            <constraints nullable="false"/>
+        </column>
+        <column name="version" type="int">
+            <constraints nullable="false"/>
+        </column>
+        <column name="creation_date" type="timestamp">
+            <constraints nullable="false"/>
+        </column>
+        <column name="last_update_date" type="timestamp">
+            <constraints nullable="false"/>
+        </column>
+        <column name="hall_id" type="bigint" autoIncrement="true">
+            <constraints nullable="false"/>
+        </column>
+    </createTable>
+    <addForeignKeyConstraint baseColumnNames="hall_id"
+                             baseTableName="seat"
+                             constraintName="fk_hall_id"
+                             referencedColumnNames="id"
+                             referencedTableName="hall"/>
+    </changeSet>
+
+    <changeSet author="RadoslawGorniak" id="creating_booking_table">
+        <createTable tableName="booking"
+                     remarks="Table keeps information about booking">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="version" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="creation_date" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_update_date" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+            <column name="user_account_id" type="bigint" autoIncrement="true">
+                <constraints nullable="false"/>
+            </column>
+            <column name="seance_id" type="bigint" autoIncrement="true">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addForeignKeyConstraint baseColumnNames="user_account_id"
+                                 baseTableName="booking"
+                                 constraintName="fk_user_account_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="user_account"/>
+        <addForeignKeyConstraint baseColumnNames="seance_id"
+                                 baseTableName="booking"
+                                 constraintName="fk_seance_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="seance"/>
+    </changeSet>
+
+    <changeSet author="RadoslawGorniak" id="creating_ticket_table">
+        <createTable tableName="ticket"
+                     remarks="Table keeps information about ticket">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="ticket_type" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="price" type="numeric(5,2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="version" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_update_date" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+            <column name="booking_id" type="bigint" autoIncrement="true">
+                <constraints nullable="false"/>
+            </column>
+            <column name="seat_id" type="bigint" autoIncrement="true">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addForeignKeyConstraint baseColumnNames="booking_id"
+                                 baseTableName="ticket"
+                                 constraintName="fk_booking_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="booking"/>
+        <addForeignKeyConstraint baseColumnNames="seat_id"
+                                 baseTableName="ticket"
+                                 constraintName="fk_seat_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="seat"/>
+    </changeSet>
+
+
 </databaseChangeLog>
