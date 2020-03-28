@@ -20,14 +20,14 @@ import javax.persistence.Table;
 public class Cinema extends BaseEntity {
 
     @Column (name="cinema_type")
-    String cinemaType;
+    private String cinemaType;
 
     @Column (name="city")
-    String city;
+    private String city;
 
     @Column (name="postcode")
-    String postcode;
+    private String postcode;
 
     @Column (name="adress")
-    String adress;
+    private String adress;
 }

@@ -20,5 +20,5 @@ import javax.persistence.Table;
 public class Hall extends BaseEntity {
 
     @Column (name = "hall_number")
-    int hallNumber;
+    private int hallNumber;
 }

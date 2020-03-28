@@ -19,16 +19,16 @@ import java.math.BigDecimal;
 public class Ticket extends BaseEntity {
 
     @Column(name="ticket_type")
-    String ticketType;
+    private String ticketType;
 
     @Column(name="price")
-    BigDecimal price;
+    private BigDecimal price;
 
     @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinColumn(name = "booking_id")
-    Booking booking;
+    private Booking booking;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "seat_id")
-    Seat seat;
+    private Seat seat;
 }

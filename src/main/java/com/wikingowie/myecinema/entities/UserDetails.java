@@ -23,19 +23,19 @@ import java.util.Objects;
 public class UserDetails extends BaseEntity {
 
     @Column(name = "first_name")
-    String firstName;
+    private String firstName;
 
     @Column(name="last_name")
-    String lastName;
+    private String lastName;
 
     @Column(name="city")
-    String city;
+    private String city;
 
     @Column(name="adress")
-    String adress;
+    private String adress;
 
     @Column(name="postcode")
-    String postcode;
+    private String postcode;
 
     @Column(name="date_of_birth")
     private Date dateOfBirth;

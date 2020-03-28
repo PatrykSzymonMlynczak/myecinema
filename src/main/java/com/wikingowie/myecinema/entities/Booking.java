@@ -20,10 +20,10 @@ public class Booking extends BaseEntity{
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "seance_id")
-    Seance seance;
+    private Seance seance;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_account_id")
-    UserAccount userAccount;
+    private UserAccount userAccount;
 
 }

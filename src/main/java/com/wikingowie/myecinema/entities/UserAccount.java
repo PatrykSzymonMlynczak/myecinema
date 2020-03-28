@@ -20,16 +20,16 @@ import java.util.Objects;
 public class UserAccount extends BaseEntity {
 
     @Column(name = "username")
-    String userName;
+    private String userName;
 
     @Column(name = "email")
-    String email;
+    private String email;
 
     @Column(name = "password")
-    String password;
+    private String password;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_details_id")
-    UserDetails userDetails;
+    private UserDetails userDetails;
 
 }
