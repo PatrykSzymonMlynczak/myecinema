@@ -46,7 +46,7 @@
             <column name="postcode" type="varchar(255)">
                 <constraints nullable="false"/>
             </column>
-            <column name="date_of_brith" type="date">
+            <column name="date_of_birth" type="timestamp">
                 <constraints nullable="false"/>
             </column>
             <column name="version" type="int">
@@ -114,10 +114,10 @@
             <column name="production" type="varchar(255)">
                 <constraints nullable="false"/>
             </column>
-            <column name="release_year" type="date">
+            <column name="release_year" type="timestamp">
                 <constraints nullable="false"/>
             </column>
-            <column name="director" type="date">
+            <column name="director" type="varchar(255)">
                 <constraints nullable="false"/>
             </column>
             <column name="duration" type="int">
@@ -126,7 +126,7 @@
             <column name="for_how_many_years" type="int">
                 <constraints nullable="false"/>
             </column>
-            <column name="version" type="varchar(255)">
+            <column name="version" type="int">
                 <constraints nullable="false"/>
             </column>
             <column name="creation_date" type="timestamp">
@@ -156,7 +156,7 @@
             <column name="adress" type="varchar(255)">
                 <constraints nullable="false"/>
             </column>
-            <column name="version" type="varchar(255)">
+            <column name="version" type="int">
                 <constraints nullable="false"/>
             </column>
             <column name="creation_date" type="timestamp">
@@ -177,7 +177,7 @@
             <column name="hall_number" type="int">
                 <constraints nullable="false"/>
             </column>
-            <column name="version" type="varchar(255)">
+            <column name="version" type="int">
                 <constraints nullable="false"/>
             </column>
             <column name="creation_date" type="timestamp">
@@ -198,7 +198,7 @@
             <column name="language_version" type="varchar(255)">
                 <constraints nullable="false"/>
             </column>
-            <column name="day" type="date">
+            <column name="day" type="timestamp">
                 <constraints nullable="false"/>
             </column>
             <column name="showing_time" type="time">
@@ -319,6 +319,9 @@
                 <constraints nullable="false"/>
             </column>
             <column name="version" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="creation_date" type="timestamp">
                 <constraints nullable="false"/>
             </column>
             <column name="last_update_date" type="timestamp">
