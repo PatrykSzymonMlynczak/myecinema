@@ -18,12 +18,12 @@ import javax.persistence.*;
 public class Seat extends BaseEntity {
 
     @Column(name="place")
-    int place;
+    private int place;
 
     @Column(name="row")
-    int row;
+    private int row;
 
     @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinColumn(name = "hall_id")
-    Hall hall;
+    private Hall hall;
 }

@@ -21,24 +21,24 @@ import java.util.Date;
 public class Movie extends BaseEntity {
 
     @Column(name = "title")
-    String title;
+    private String title;
 
     @Column(name = "type")
-    String type;
+    private String type;
 
     @Column(name = "production")
-    String production;
+    private String production;
 
     @Column(name = "release_year")
-    Date releaseYear;
+    private Date releaseYear;
 
     @Column(name = "director")
-    String director;
+    private String director;
 
     @Column(name = "duration")
-    int duration;
+    private int duration;
 
     @Column(name = "for_how_many_years")
-    int forHowManyYears;
+    private int forHowManyYears;
 
 }

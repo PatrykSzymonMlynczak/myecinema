@@ -22,23 +22,23 @@ import java.util.Date;
 public class Seance extends BaseEntity {
 
     @Column(name = "language_version")
-    String languageVersion;
+    private String languageVersion;
 
     @Column(name = "day")
-    Date day;
+    private Date day;
 
     @Column(name = "showing_time")
-    Time showingTime;
+    private Time showingTime;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "hall_id")
-    Hall hall;
+    private Hall hall;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "movie_id")
-    Movie movie;
+    private Movie movie;
 
     @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinColumn(name = "cinema_id")
-    Cinema cinema;
+    private Cinema cinema;
 }
