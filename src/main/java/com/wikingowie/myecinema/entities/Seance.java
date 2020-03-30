@@ -8,9 +8,7 @@ import lombok.experimental.SuperBuilder;
 
 import javax.persistence.*;
 import java.sql.Time;
-import java.sql.Timestamp;
-import java.time.LocalDateTime;
-import java.util.Date;
+import java.time.LocalDate;
 
 @SuperBuilder
 @Data
@@ -25,7 +23,7 @@ public class Seance extends BaseEntity {
     private String languageVersion;
 
     @Column(name = "day")
-    private Date day;
+    private LocalDate day;
 
     @Column(name = "showing_time")
     private Time showingTime;

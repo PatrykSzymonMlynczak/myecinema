@@ -15,4 +15,16 @@ public class ExampleController {
     public ResponseEntity<String> getTest(){
         return ResponseEntity.ok("Test");
     }
+
+    @GetMapping(value = "/admin", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<String> getTestAdmin(){
+        return ResponseEntity.ok("Test for Admin");
+    }
+
+    @GetMapping(value = "/user", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<String> getTestUser(){
+        return ResponseEntity.ok("Test for User");
+    }
+
+
 }
