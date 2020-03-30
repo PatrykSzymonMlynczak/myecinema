@@ -16,18 +16,18 @@
             <column name="version" type="int">
                 <constraints nullable="false"/>
             </column>
-            <column name="creation_date" type="timestamp">
+            <column name="creation_date" type="date">
                 <constraints nullable="false"/>
             </column>
-            <column name="last_update_date" type="timestamp">
+            <column name="last_update_date" type="date">
                 <constraints nullable="false"/>
             </column>
         </createTable>
     </changeSet>
 
-    <changeSet author="RadoslawGorniak" id="creating_user_details_table">
-        <createTable tableName="user_details"
-                     remarks="Table keeps information about user_details">
+    <changeSet author="RadoslawGorniak" id="creating_user_data_table">
+        <createTable tableName="user_data"
+                     remarks="Table keeps information about user_data">
             <column name="id" type="bigint" autoIncrement="true">
                 <constraints primaryKey="true"/>
             </column>
@@ -46,19 +46,16 @@
             <column name="postcode" type="varchar(255)">
                 <constraints nullable="false"/>
             </column>
-            <column name="date_of_birth" type="timestamp">
+            <column name="date_of_birth" type="date">
                 <constraints nullable="false"/>
             </column>
             <column name="version" type="int">
                 <constraints nullable="false"/>
             </column>
-            <column name="creation_date" type="timestamp">
+            <column name="creation_date" type="date">
                 <constraints nullable="false"/>
             </column>
-            <column name="last_update_date" type="timestamp">
-                <constraints nullable="false"/>
-            </column>
-            <column name="user_details_id" type="bigint" autoIncrement="true">
+            <column name="last_update_date" type="date">
                 <constraints nullable="false"/>
             </column>
         </createTable>
@@ -79,24 +76,27 @@
             <column name="password" type="varchar(255)">
                 <constraints nullable="false"/>
             </column>
+            <column name="role" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
             <column name="version" type="int">
                 <constraints nullable="false"/>
             </column>
-            <column name="creation_date" type="timestamp">
+            <column name="creation_date" type="date">
                 <constraints nullable="false"/>
             </column>
-            <column name="last_update_date" type="timestamp">
+            <column name="last_update_date" type="date">
                 <constraints nullable="false"/>
             </column>
-            <column name="user_details_id" type="bigint" autoIncrement="true">
-                <constraints nullable="false"/>
+            <column name="user_data_id" type="bigint">
+<!--                <constraints nullable="false"/>-->
             </column>
         </createTable>
-        <addForeignKeyConstraint baseColumnNames="user_details_id"
+        <addForeignKeyConstraint baseColumnNames="user_data_id"
                                  baseTableName="user_account"
-                                 constraintName="fk_user_details_id"
+                                 constraintName="fk_user_data_id"
                                  referencedColumnNames="id"
-                                 referencedTableName="user_details"/>
+                                 referencedTableName="user_data"/>
     </changeSet>
 
     <changeSet author="RadoslawGorniak" id="creating_movie_table">
@@ -114,7 +114,7 @@
             <column name="production" type="varchar(255)">
                 <constraints nullable="false"/>
             </column>
-            <column name="release_year" type="timestamp">
+            <column name="release_year" type="date">
                 <constraints nullable="false"/>
             </column>
             <column name="director" type="varchar(255)">
@@ -129,10 +129,10 @@
             <column name="version" type="int">
                 <constraints nullable="false"/>
             </column>
-            <column name="creation_date" type="timestamp">
+            <column name="creation_date" type="date">
                 <constraints nullable="false"/>
             </column>
-            <column name="last_update_date" type="timestamp">
+            <column name="last_update_date" type="date">
                 <constraints nullable="false"/>
             </column>
         </createTable>
@@ -159,10 +159,10 @@
             <column name="version" type="int">
                 <constraints nullable="false"/>
             </column>
-            <column name="creation_date" type="timestamp">
+            <column name="creation_date" type="date">
                 <constraints nullable="false"/>
             </column>
-            <column name="last_update_date" type="timestamp">
+            <column name="last_update_date" type="date">
                 <constraints nullable="false"/>
             </column>
         </createTable>
@@ -180,10 +180,10 @@
             <column name="version" type="int">
                 <constraints nullable="false"/>
             </column>
-            <column name="creation_date" type="timestamp">
+            <column name="creation_date" type="date">
                 <constraints nullable="false"/>
             </column>
-            <column name="last_update_date" type="timestamp">
+            <column name="last_update_date" type="date">
                 <constraints nullable="false"/>
             </column>
         </createTable>
@@ -198,7 +198,7 @@
             <column name="language_version" type="varchar(255)">
                 <constraints nullable="false"/>
             </column>
-            <column name="day" type="timestamp">
+            <column name="day" type="date">
                 <constraints nullable="false"/>
             </column>
             <column name="showing_time" type="time">
@@ -207,19 +207,19 @@
             <column name="version" type="int">
                 <constraints nullable="false"/>
             </column>
-            <column name="creation_date" type="timestamp">
+            <column name="creation_date" type="date">
                 <constraints nullable="false"/>
             </column>
-            <column name="last_update_date" type="timestamp">
+            <column name="last_update_date" type="date">
                 <constraints nullable="false"/>
             </column>
-            <column name="hall_id" type="bigint" autoIncrement="true">
+            <column name="hall_id" type="bigint">
                 <constraints nullable="false"/>
             </column>
-            <column name="movie_id" type="bigint" autoIncrement="true">
+            <column name="movie_id" type="bigint">
                 <constraints nullable="false"/>
             </column>
-            <column name="cinema_id" type="bigint" autoIncrement="true">
+            <column name="cinema_id" type="bigint">
                 <constraints nullable="false"/>
             </column>
         </createTable>
@@ -255,19 +255,19 @@
         <column name="version" type="int">
             <constraints nullable="false"/>
         </column>
-        <column name="creation_date" type="timestamp">
+        <column name="creation_date" type="date">
             <constraints nullable="false"/>
         </column>
-        <column name="last_update_date" type="timestamp">
+        <column name="last_update_date" type="date">
             <constraints nullable="false"/>
         </column>
-        <column name="hall_id" type="bigint" autoIncrement="true">
+        <column name="halls_id" type="bigint">
             <constraints nullable="false"/>
         </column>
     </createTable>
-    <addForeignKeyConstraint baseColumnNames="hall_id"
+    <addForeignKeyConstraint baseColumnNames="halls_id"
                              baseTableName="seat"
-                             constraintName="fk_hall_id"
+                             constraintName="fk_halls_id"
                              referencedColumnNames="id"
                              referencedTableName="hall"/>
     </changeSet>
@@ -281,16 +281,16 @@
             <column name="version" type="int">
                 <constraints nullable="false"/>
             </column>
-            <column name="creation_date" type="timestamp">
+            <column name="creation_date" type="date">
                 <constraints nullable="false"/>
             </column>
-            <column name="last_update_date" type="timestamp">
+            <column name="last_update_date" type="date">
                 <constraints nullable="false"/>
             </column>
-            <column name="user_account_id" type="bigint" autoIncrement="true">
+            <column name="user_account_id" type="bigint">
                 <constraints nullable="false"/>
             </column>
-            <column name="seance_id" type="bigint" autoIncrement="true">
+            <column name="seance_id" type="bigint">
                 <constraints nullable="false"/>
             </column>
         </createTable>
@@ -321,16 +321,16 @@
             <column name="version" type="int">
                 <constraints nullable="false"/>
             </column>
-            <column name="creation_date" type="timestamp">
+            <column name="creation_date" type="date">
                 <constraints nullable="false"/>
             </column>
-            <column name="last_update_date" type="timestamp">
+            <column name="last_update_date" type="date">
                 <constraints nullable="false"/>
             </column>
-            <column name="booking_id" type="bigint" autoIncrement="true">
+            <column name="booking_id" type="bigint">
                 <constraints nullable="false"/>
             </column>
-            <column name="seat_id" type="bigint" autoIncrement="true">
+            <column name="seat_id" type="bigint">
                 <constraints nullable="false"/>
             </column>
         </createTable>

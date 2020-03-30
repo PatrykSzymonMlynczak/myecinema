@@ -5,13 +5,11 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
-import org.hibernate.annotations.Type;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
-import java.util.Date;
-import java.util.Objects;
+import java.time.LocalDate;
 
 @SuperBuilder
 @Data
@@ -19,8 +17,8 @@ import java.util.Objects;
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 @Entity
-@Table(name = "user_details")
-public class UserDetails extends BaseEntity {
+@Table(name = "user_data")
+public class UserData extends BaseEntity {
 
     @Column(name = "first_name")
     private String firstName;
@@ -38,6 +36,6 @@ public class UserDetails extends BaseEntity {
     private String postcode;
 
     @Column(name="date_of_birth")
-    private Date dateOfBirth;
+    private LocalDate dateOfBirth;
 
 }

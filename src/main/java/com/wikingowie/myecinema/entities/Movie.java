@@ -9,7 +9,7 @@ import lombok.experimental.SuperBuilder;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
-import java.util.Date;
+import java.time.LocalDate;
 
 @SuperBuilder
 @Data
@@ -30,7 +30,7 @@ public class Movie extends BaseEntity {
     private String production;
 
     @Column(name = "release_year")
-    private Date releaseYear;
+    private LocalDate releaseYear;
 
     @Column(name = "director")
     private String director;

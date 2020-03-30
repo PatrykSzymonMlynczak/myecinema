@@ -24,6 +24,6 @@ public class Seat extends BaseEntity {
     private int row;
 
     @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
-    @JoinColumn(name = "hall_id")
+    @JoinColumn(name = "halls_id")
     private Hall hall;
 }
