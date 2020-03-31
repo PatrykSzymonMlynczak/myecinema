@@ -79,6 +79,27 @@
             <column name="role" type="varchar(255)">
                 <constraints nullable="false"/>
             </column>
+            <column name="registration_date" type="timestamp">
+
+            </column>
+            <column name="activation_token" type="varchar(255)">
+
+            </column>
+            <column name="activation_token_expiration_date" type="timestamp">
+
+            </column>
+            <column name="is_account_active" type="bool">
+
+            </column>
+            <column name="is_premium_account" type="bool">
+
+            </column>
+            <column name="is_account_blocked" type="bool">
+
+            </column>
+            <column name="activation_date" type="timestamp">
+
+            </column>
             <column name="version" type="int">
                 <constraints nullable="false"/>
             </column>
