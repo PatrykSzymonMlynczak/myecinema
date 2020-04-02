@@ -1,5 +1,7 @@
 package com.wikingowie.myecinema.infrastructure.email.service;
 
+import com.wikingowie.myecinema.infrastructure.email.dto.EmailFields;
+
 public interface EmailSender {
-    void sendEmail(String to, String subject, String content, boolean isHtmlContent);
+    void sendEmail(EmailFields emailFields);
 }
