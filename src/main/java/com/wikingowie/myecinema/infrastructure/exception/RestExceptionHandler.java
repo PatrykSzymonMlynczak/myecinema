@@ -31,7 +31,7 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
     protected ResponseEntity<Object> handleHttpMessageNotReadable(HttpMessageNotReadableException ex,
                                                                   HttpHeaders headers, HttpStatus status, WebRequest request) {
         String message = "Malformed JSON request" ;
-        return buildResponseEntity(new ApiError(HttpStatus.BAD_REQUEST, message, ex));
+        return buildResponseEntityObject(new ApiError(HttpStatus.BAD_REQUEST, message, ex));
     }
 
     @Override
@@ -44,7 +44,7 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
         apiError.setMessage("Validation error");
         apiError.addValidationErrors(ex.getBindingResult().getFieldErrors());
         apiError.addValidationError(ex.getBindingResult().getGlobalErrors());
-        return buildResponseEntity(apiError);
+        return buildResponseEntityObject(apiError);
     }
 
     @Override
@@ -52,51 +52,61 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
             MissingServletRequestParameterException ex, HttpHeaders headers,
             HttpStatus status, WebRequest request) {
 
-        return buildResponseEntity(new ApiError(HttpStatus.BAD_REQUEST, ex.getParameterName() + " parameter is missing", ex));
+        return buildResponseEntityObject(new ApiError(HttpStatus.BAD_REQUEST, ex.getParameterName() + " parameter is missing", ex));
     }
 
     @ExceptionHandler({UsernameNotFoundException.class, EntityNotFoundException.class,
-            BookingNotFoundException.class, IllegalArgumentException.class})
-    protected ResponseEntity<Object> handleNotFoundException(
-            UsernameNotFoundException ex){
+            BookingNotFoundException.class})
+    protected ResponseEntity<ApiError> handleNotFoundException(
+            Exception ex){
 
-        return buildResponseEntity(new ApiError(HttpStatus.NOT_FOUND, ex.getMessage(), ex));
+        return buildResponseEntity(new ApiError(HttpStatus.INTERNAL_SERVER_ERROR, ex.getMessage(), ex));
     }
 
     @ExceptionHandler({ GeoIp2Exception.class, EmailServiceException.class,
             ServletException.class, RuntimeException.class,
-            Exception.class, IOException.class})
-    protected ResponseEntity<Object> handleException(
+            Exception.class, IOException.class,
+            IllegalArgumentException.class})
+    protected ResponseEntity<ApiError> handleException(
             Exception ex){
 
         return buildResponseEntity(new ApiError(HttpStatus.INTERNAL_SERVER_ERROR, ex.getMessage(), ex));
     }
 
     @ExceptionHandler(MessagingException.class)
-    protected ResponseEntity<Object> handleMessagingException(
+    protected ResponseEntity<ApiError> handleMessagingException(
             MessagingException ex){
 
         String message = ex.getMessage()+">> next exception is: "+ex.getNextException().getMessage();
         return buildResponseEntity(new ApiError(HttpStatus.INTERNAL_SERVER_ERROR, message , ex));
     }
 
-    //todo - auth failure handler ?
-    @ExceptionHandler(AuthenticationException.class)
-    protected ResponseEntity<Object> handleAuthenticationException(
-            AuthenticationException ex){
-
-        return buildResponseEntity(new ApiError(HttpStatus.UNAUTHORIZED, ex.getMessage(), ex));
+    @ExceptionHandler(Throwable.class)
+    public ResponseEntity handleException(Throwable ex) {
+        return buildResponseEntity(new ApiError(HttpStatus.INTERNAL_SERVER_ERROR, "Unexpected error has occurred.", ex));
     }
 
     @ExceptionHandler( AccessDeniedException.class )
-    protected ResponseEntity<Object> handleAccessDeniedException(
-            Exception ex, WebRequest request) {
+    protected ResponseEntity<ApiError> handleAccessDeniedException(
+            Exception ex) {
 
         return buildResponseEntity(new ApiError(HttpStatus.FORBIDDEN, "Access Denied: "+ ex.getMessage(), ex));
     }
 
+    //todo - auth failure handler ?
+    @ExceptionHandler(AuthenticationException.class)
+    protected ResponseEntity<ApiError> handleAuthenticationException(
+            Exception ex){
 
-    private ResponseEntity<Object> buildResponseEntity(ApiError apiError) {
+        return buildResponseEntity(new ApiError(HttpStatus.UNAUTHORIZED, ex.getMessage(), ex));
+    }
+
+
+    private ResponseEntity<ApiError> buildResponseEntity(ApiError apiError) {
+        return new ResponseEntity<ApiError>(apiError, apiError.getStatus());
+    }
+
+    private ResponseEntity<Object> buildResponseEntityObject(ApiError apiError) {
         return new ResponseEntity<Object>(apiError, apiError.getStatus());
     }
 }

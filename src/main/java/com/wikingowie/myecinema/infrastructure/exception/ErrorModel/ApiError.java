@@ -3,6 +3,8 @@ package com.wikingowie.myecinema.infrastructure.exception.ErrorModel;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
@@ -11,7 +13,8 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-
+@Setter
+@Getter
 @Data
 @JsonTypeInfo(include = JsonTypeInfo.As.WRAPPER_OBJECT, use = JsonTypeInfo.Id.CUSTOM, property = "error", visible = true)
 public class ApiError {
@@ -23,7 +26,7 @@ public class ApiError {
     private String debugMessage;
     private List<ApiSubError> subErrors;
 
-    private ApiError() {
+    public ApiError() {
         timestamp = LocalDateTime.now();
     }
 
@@ -37,6 +40,12 @@ public class ApiError {
         this.status = status;
         this.message = "Unexpected error";
         this.debugMessage = ex.getLocalizedMessage();
+    }
+
+    public ApiError(HttpStatus status, String message) {
+        this();
+        this.status = status;
+        this.message = message;
     }
 
     public ApiError(HttpStatus status, String message, Throwable ex) {
