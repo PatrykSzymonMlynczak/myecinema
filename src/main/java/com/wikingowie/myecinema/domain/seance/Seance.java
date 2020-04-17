@@ -1,5 +1,7 @@
 package com.wikingowie.myecinema.domain.seance;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.wikingowie.myecinema.domain.booking.Booking;
 import com.wikingowie.myecinema.domain.cinema.Cinema;
 import com.wikingowie.myecinema.domain.hall.Hall;
 import com.wikingowie.myecinema.domain.movie.Movie;
@@ -9,6 +11,8 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.sql.Time;
@@ -32,15 +36,22 @@ public class Seance extends BaseEntity {
     @Column(name = "showing_time")
     private Time showingTime;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "hall_id")
+    @OneToOne(fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL,
+            mappedBy = "seance")
+    private Booking booking;
+
+    @OneToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "hall_id", nullable = false)
     private Hall hall;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "movie_id")
+    @OneToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "movie_id", nullable = false)
     private Movie movie;
 
-    @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
-    @JoinColumn(name = "cinema_id")
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "cinema_id", nullable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JsonIgnore
     private Cinema cinema;
 }

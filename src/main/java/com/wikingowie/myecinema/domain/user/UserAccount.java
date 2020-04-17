@@ -1,5 +1,6 @@
 package com.wikingowie.myecinema.domain.user;
 
+import com.wikingowie.myecinema.domain.booking.Booking;
 import com.wikingowie.myecinema.infrastructure.BaseEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -57,9 +58,13 @@ public class UserAccount extends BaseEntity {
     @Column(name = "activation_date")
     private LocalDateTime activationDate;
 
+    //TODO zmienic na Embaded klasa zagniezdzona
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_data_id")
     private UserData userData;
 
-
+    @OneToOne(fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL,
+            mappedBy = "userAccount")
+    private Booking booking;
 }
