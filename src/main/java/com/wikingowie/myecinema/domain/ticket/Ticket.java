@@ -1,5 +1,6 @@
 package com.wikingowie.myecinema.domain.ticket;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.wikingowie.myecinema.domain.booking.Booking;
 import com.wikingowie.myecinema.domain.seat.Seat;
 import com.wikingowie.myecinema.infrastructure.BaseEntity;
@@ -8,6 +9,8 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -27,11 +30,13 @@ public class Ticket extends BaseEntity {
     @Column(name="price")
     private BigDecimal price;
 
-    @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
-    @JoinColumn(name = "booking_id")
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "booking_id", nullable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JsonIgnore
     private Booking booking;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "seat_id")
+    @OneToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "seat_id", nullable = false)
     private Seat seat;
 }

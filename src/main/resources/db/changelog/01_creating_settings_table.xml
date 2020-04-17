@@ -5,26 +5,6 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
          http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
 
-    <!--Create Example Table-->
-    <changeSet author="RadoslawGorniak" id="creating_example_table">
-        <createTable tableName="example_table"
-                     remarks="Table keeps example value">
-            <column name="id" type="bigint" autoIncrement="true">
-                <constraints primaryKey="true"/>
-            </column>
-            <column name="example_column" type="varchar(255)"/>
-            <column name="version" type="int">
-                <constraints nullable="false"/>
-            </column>
-            <column name="creation_date" type="date">
-                <constraints nullable="false"/>
-            </column>
-            <column name="last_update_date" type="date">
-                <constraints nullable="false"/>
-            </column>
-        </createTable>
-    </changeSet>
-
     <changeSet author="RadoslawGorniak" id="creating_user_data_table">
         <createTable tableName="user_data"
                      remarks="Table keeps information about user_data">
@@ -293,6 +273,38 @@
                              referencedTableName="hall"/>
     </changeSet>
 
+    <changeSet author="RadoslawGorniak" id="creating_bars_table">
+        <createTable tableName="bars"
+                     remarks="Table keeps information about bars">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="date_collect" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+            <column name="value_order" type="numeric(5,2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="version" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="creation_date" type="date">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_update_date" type="date">
+                <constraints nullable="false"/>
+            </column>
+            <!--            <column name="halls_id" type="bigint">-->
+            <!--                <constraints nullable="false"/>-->
+            <!--            </column>-->
+        </createTable>
+        <!--        <addForeignKeyConstraint baseColumnNames="halls_id"-->
+        <!--                                 baseTableName="seat"-->
+        <!--                                 constraintName="fk_halls_id"-->
+        <!--                                 referencedColumnNames="id"-->
+        <!--                                 referencedTableName="hall"/>-->
+    </changeSet>
+
     <changeSet author="RadoslawGorniak" id="creating_booking_table">
         <createTable tableName="booking"
                      remarks="Table keeps information about booking">
@@ -314,6 +326,9 @@
             <column name="seance_id" type="bigint">
                 <constraints nullable="false"/>
             </column>
+            <column name="bar_order_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
         </createTable>
         <addForeignKeyConstraint baseColumnNames="user_account_id"
                                  baseTableName="booking"
@@ -325,6 +340,11 @@
                                  constraintName="fk_seance_id"
                                  referencedColumnNames="id"
                                  referencedTableName="seance"/>
+        <addForeignKeyConstraint baseColumnNames="bar_order_id"
+                                 baseTableName="booking"
+                                 constraintName="fk_bar_order_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="bars"/>
     </changeSet>
 
     <changeSet author="RadoslawGorniak" id="creating_ticket_table">
@@ -365,6 +385,76 @@
                                  constraintName="fk_seat_id"
                                  referencedColumnNames="id"
                                  referencedTableName="seat"/>
+    </changeSet>
+
+    <changeSet author="RadoslawGorniak" id="creating_products_table">
+        <createTable tableName="products"
+                     remarks="Table keeps information about products">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="amount" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="product_type" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="price" type="numeric(5,2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="version" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="creation_date" type="date">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_update_date" type="date">
+                <constraints nullable="false"/>
+            </column>
+            <column name="bar_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addForeignKeyConstraint baseColumnNames="bar_id"
+                                 baseTableName="products"
+                                 constraintName="fk_bar_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="bars"/>
+    </changeSet>
+
+    <changeSet author="RadoslawGorniak" id="creating_comments_table">
+        <createTable tableName="comments"
+                     remarks="Table keeps information about comments">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="message" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="author" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="rating" type="double">
+                <constraints nullable="false"/>
+            </column>
+            <column name="version" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="creation_date" type="date">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_update_date" type="date">
+                <constraints nullable="false"/>
+            </column>
+            <column name="comment_movie_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+                <addForeignKeyConstraint baseColumnNames="comment_movie_id"
+                                         baseTableName="comments"
+                                         constraintName="fk_comment_movie_id"
+                                         referencedColumnNames="id"
+                                         referencedTableName="movie"/>
     </changeSet>
 
 

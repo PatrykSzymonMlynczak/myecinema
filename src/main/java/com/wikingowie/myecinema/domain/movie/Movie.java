@@ -1,5 +1,6 @@
 package com.wikingowie.myecinema.domain.movie;
 
+import com.wikingowie.myecinema.domain.seance.Seance;
 import com.wikingowie.myecinema.infrastructure.BaseEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -7,9 +8,7 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.time.LocalDate;
 
 @SuperBuilder
@@ -41,5 +40,10 @@ public class Movie extends BaseEntity {
 
     @Column(name = "for_how_many_years")
     private int forHowManyYears;
+
+    @OneToOne(fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL,
+            mappedBy = "movie")
+    private Seance seance;
 
 }
