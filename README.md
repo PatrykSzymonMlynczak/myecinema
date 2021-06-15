@@ -1,4 +1,4 @@
-# Myecinema
+# My-E-Cinema
 
 Application allowing to find cinemas & seances, booking seats, buying
 tickets, etc. The project was developing in a small team, with the support of experienced programmers in the Discord Community. 
